@@ -1,0 +1,1246 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>دليل استخدام منصة سمنان</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+.logo-samnan-img {
+  width: 48px;
+  height: 48px;
+  object-fit: contain;
+}
+
+.logo-thakaa-img {
+  width: 34px;
+  height: 34px;
+  object-fit: contain;
+}
+
+.hero-logo-img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+}
+  :root {
+    --samnan-blue: #1a4fa0;
+    --samnan-blue-dark: #0f3275;
+    --samnan-blue-light: #e8f0fb;
+    --thakaa-teal: #0d9488;
+    --accent-gold: #f59e0b;
+    --text-dark: #1e2a3a;
+    --text-mid: #4b5563;
+    --text-light: #9ca3af;
+    --bg-white: #ffffff;
+    --bg-soft: #f8fafc;
+    --green: #16a34a;
+    --red: #dc2626;
+    --orange: #ea580c;
+    --purple: #7c3aed;
+  }
+
+  html, body {
+    height: 100%;
+    font-family: 'Cairo', sans-serif;
+    background: var(--bg-soft);
+    color: var(--text-dark);
+    overflow: hidden;
+  }
+
+  /* ─── LAYOUT ─── */
+  .app {
+    display: grid;
+    grid-template-rows: 64px 1fr 56px;
+    height: 100vh;
+  }
+
+  /* ─── TOP NAV ─── */
+  .topnav {
+    background: var(--samnan-blue-dark);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    box-shadow: 0 2px 12px rgba(0,0,0,.25);
+    z-index: 10;
+  }
+  .topnav-logos { display: flex; align-items: center; gap: 18px; }
+  .logo-divider { width: 1px; height: 32px; background: rgba(255,255,255,.25); }
+
+  /* Samnan logo SVG */
+  .logo-samnan { width: 48px; height: 48px; }
+  .logo-thakaa { height: 36px; display: flex; align-items: center; gap: 8px; }
+  .logo-thakaa-text { color: #fff; font-size: 13px; font-weight: 700; line-height: 1.2; }
+  .logo-thakaa-text span { display: block; color: rgba(255,255,255,.65); font-weight: 400; font-size: 11px; }
+
+  .topnav-title {
+    color: #fff;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: .3px;
+  }
+
+  .topnav-counter {
+    color: rgba(255,255,255,.7);
+    font-size: 13px;
+    background: rgba(255,255,255,.12);
+    padding: 4px 14px;
+    border-radius: 20px;
+  }
+
+  /* ─── SLIDES AREA ─── */
+  .slides-container {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 36px 52px;
+    opacity: 0;
+    transform: translateX(-60px);
+    transition: opacity .4s ease, transform .4s ease;
+    pointer-events: none;
+    overflow-y: auto;
+  }
+  .slide.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+  }
+  .slide.exit-right { transform: translateX(80px); opacity: 0; }
+  .slide.exit-left  { transform: translateX(-80px); opacity: 0; }
+
+  /* ─── SLIDE TITLE ─── */
+  .slide-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--samnan-blue);
+    margin-bottom: 6px;
+  }
+  .slide-title {
+    font-size: 32px;
+    font-weight: 900;
+    color: var(--text-dark);
+    margin-bottom: 6px;
+    line-height: 1.2;
+  }
+  .slide-subtitle {
+    font-size: 16px;
+    color: var(--text-mid);
+    margin-bottom: 28px;
+    font-weight: 500;
+  }
+  .divider {
+    height: 3px;
+    width: 56px;
+    background: var(--samnan-blue);
+    border-radius: 2px;
+    margin-bottom: 28px;
+    margin-right: 0;
+    margin-left: auto;
+  }
+
+  /* ─── HERO SLIDE ─── */
+  .hero-slide {
+    background: linear-gradient(135deg, var(--samnan-blue-dark) 0%, #1a4fa0 55%, #1e6bb5 100%);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 40px;
+  }
+  .hero-logos {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+    margin-bottom: 44px;
+  }
+  .hero-logo-box {
+    background: rgba(255,255,255,.12);
+    border: 1px solid rgba(255,255,255,.2);
+    border-radius: 20px;
+    padding: 20px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    backdrop-filter: blur(4px);
+  }
+  .hero-logo-separator {
+    font-size: 28px;
+    color: rgba(255,255,255,.35);
+    font-weight: 300;
+  }
+  .hero-main-title {
+    font-size: 46px;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 16px rgba(0,0,0,.2);
+  }
+  .hero-tagline {
+    font-size: 18px;
+    color: rgba(255,255,255,.8);
+    margin-bottom: 44px;
+    max-width: 560px;
+    line-height: 1.7;
+  }
+  .hero-badges {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .hero-badge {
+    background: rgba(255,255,255,.15);
+    border: 1px solid rgba(255,255,255,.25);
+    border-radius: 30px;
+    padding: 8px 20px;
+    color: #fff;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  /* ─── CARDS GRID ─── */
+  .cards-grid { display: grid; gap: 16px; }
+  .cards-grid.cols-2 { grid-template-columns: 1fr 1fr; }
+  .cards-grid.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+  .cards-grid.cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+  .card {
+    background: #fff;
+    border-radius: 16px;
+    padding: 22px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.07), 0 4px 16px rgba(0,0,0,.05);
+    border: 1.5px solid #eef2f8;
+    transition: transform .2s, box-shadow .2s;
+  }
+  .card:hover { transform: translateY(-3px); box-shadow: 0 4px 24px rgba(26,79,160,.13); }
+  .card-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+    margin-bottom: 14px;
+  }
+  .card-title { font-size: 16px; font-weight: 700; margin-bottom: 6px; color: var(--text-dark); }
+  .card-body { font-size: 13.5px; color: var(--text-mid); line-height: 1.65; }
+
+  /* ─── ROLE CARDS ─── */
+  .role-card { border-top: 4px solid; }
+  .role-card .badge {
+    display: inline-flex; align-items: center;
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+    margin-bottom: 10px;
+  }
+  .role-tag { font-size: 12px; font-weight: 600; color: var(--text-mid); margin-bottom: 14px; }
+  .perms-list { list-style: none; margin-top: 12px; }
+  .perms-list li {
+    font-size: 13px; color: var(--text-mid);
+    padding: 4px 0 4px 0;
+    display: flex; align-items: flex-start; gap: 7px;
+    border-bottom: 1px solid #f3f4f6;
+  }
+  .perms-list li:last-child { border: none; }
+  .perm-icon { flex-shrink: 0; margin-top: 1px; }
+
+  /* ─── LIFECYCLE STEPPER ─── */
+  .lifecycle-steps { display: flex; flex-direction: column; gap: 14px; }
+  .step {
+    display: flex; gap: 18px; align-items: flex-start;
+    background: #fff; border-radius: 14px;
+    padding: 16px 20px;
+    box-shadow: 0 1px 4px rgba(0,0,0,.06);
+    border: 1.5px solid #eef2f8;
+    transition: border-color .2s;
+  }
+  .step:hover { border-color: var(--samnan-blue); }
+  .step-num {
+    width: 38px; height: 38px; flex-shrink: 0;
+    border-radius: 50%;
+    background: var(--samnan-blue);
+    color: #fff;
+    font-size: 15px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-content { flex: 1; }
+  .step-title { font-size: 15px; font-weight: 700; margin-bottom: 3px; color: var(--text-dark); }
+  .step-desc { font-size: 13px; color: var(--text-mid); line-height: 1.55; }
+  .step-who {
+    font-size: 11px; font-weight: 700;
+    padding: 2px 9px; border-radius: 12px;
+    margin-top: 6px; display: inline-block;
+  }
+  .step-block {
+    font-size: 11.5px; color: var(--red);
+    background: #fef2f2; border-radius: 8px;
+    padding: 4px 10px; margin-top: 6px; display: inline-block;
+  }
+
+  /* ─── RULES ─── */
+  .rules-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rule-item {
+    background: #fff; border-radius: 12px;
+    padding: 14px 18px;
+    display: flex; gap: 12px; align-items: flex-start;
+    border: 1.5px solid #eef2f8;
+    box-shadow: 0 1px 3px rgba(0,0,0,.05);
+  }
+  .rule-num {
+    width: 28px; height: 28px; flex-shrink: 0;
+    background: var(--samnan-blue-light);
+    color: var(--samnan-blue);
+    border-radius: 8px;
+    font-size: 13px; font-weight: 800;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .rule-text { font-size: 13.5px; color: var(--text-mid); line-height: 1.55; }
+
+  /* ─── DASHBOARD MOCKUP ─── */
+  .dashboard-mock {
+    background: #fff; border-radius: 16px;
+    border: 1.5px solid #eef2f8;
+    box-shadow: 0 2px 12px rgba(0,0,0,.07);
+    overflow: hidden;
+  }
+  .dash-topbar {
+    background: var(--samnan-blue-dark);
+    padding: 12px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .dash-topbar-title { color: #fff; font-size: 14px; font-weight: 700; }
+  .dash-stats {
+    display: grid; grid-template-columns: repeat(4,1fr);
+    gap: 0; border-bottom: 1px solid #f3f4f6;
+  }
+  .dash-stat {
+    padding: 16px 18px; text-align: center;
+    border-left: 1px solid #f3f4f6;
+  }
+  .dash-stat:last-child { border: none; }
+  .dash-stat-num { font-size: 26px; font-weight: 900; color: var(--samnan-blue); }
+  .dash-stat-lbl { font-size: 11px; color: var(--text-light); margin-top: 2px; }
+  .dash-list { padding: 14px 18px; }
+  .dash-row {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 10px 0; border-bottom: 1px solid #f9fafb; font-size: 13px;
+  }
+  .dash-row:last-child { border: none; }
+  .dash-name { font-weight: 600; color: var(--text-dark); }
+  .dash-client { color: var(--text-light); font-size: 12px; }
+  .status-badge {
+    font-size: 11px; font-weight: 700;
+    padding: 3px 10px; border-radius: 20px;
+  }
+  .badge-green  { background: #dcfce7; color: var(--green); }
+  .badge-yellow { background: #fef9c3; color: #854d0e; }
+  .badge-red    { background: #fee2e2; color: var(--red); }
+  .badge-blue   { background: #dbeafe; color: var(--samnan-blue); }
+  .badge-gray   { background: #f3f4f6; color: #6b7280; }
+  .badge-orange { background: #ffedd5; color: var(--orange); }
+
+  /* ─── PAYMENT FLOW ─── */
+  .payment-flow {
+    display: flex; gap: 0; align-items: center;
+    overflow-x: auto; padding-bottom: 8px;
+  }
+  .pf-step {
+    flex: 1; min-width: 110px;
+    background: #fff; border-radius: 12px;
+    padding: 14px 12px; text-align: center;
+    border: 2px solid #e5e7eb;
+    position: relative;
+  }
+  .pf-step.paid  { border-color: var(--green); background: #f0fdf4; }
+  .pf-step.active-step { border-color: var(--samnan-blue); background: var(--samnan-blue-light); }
+  .pf-step.locked { opacity: .5; }
+  .pf-arrow { font-size: 18px; color: var(--text-light); margin: 0 6px; flex-shrink: 0; }
+  .pf-icon { font-size: 22px; margin-bottom: 6px; }
+  .pf-name { font-size: 12px; font-weight: 700; color: var(--text-dark); }
+  .pf-amount { font-size: 11px; color: var(--text-mid); margin-top: 3px; }
+  .pf-status { font-size: 10px; margin-top: 6px; }
+
+  /* ─── BOTTOM NAV ─── */
+  .bottomnav {
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    box-shadow: 0 -2px 8px rgba(0,0,0,.05);
+  }
+  .nav-btn {
+    display: flex; align-items: center; gap: 8px;
+    background: none; border: none; cursor: pointer;
+    font-family: 'Cairo', sans-serif;
+    font-size: 14px; font-weight: 600;
+    color: var(--samnan-blue);
+    padding: 10px 20px;
+    border-radius: 8px;
+    transition: background .2s;
+  }
+  .nav-btn:hover { background: var(--samnan-blue-light); }
+  .nav-btn:disabled { color: var(--text-light); cursor: not-allowed; }
+  .nav-btn:disabled:hover { background: none; }
+
+  /* ─── PROGRESS DOTS ─── */
+  .progress-dots {
+    display: flex; gap: 7px; align-items: center;
+  }
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #d1d5db;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .dot.active { background: var(--samnan-blue); transform: scale(1.4); }
+  .dot:hover { background: var(--samnan-blue); }
+
+  /* ─── HIGHLIGHT BOX ─── */
+  .highlight-box {
+    background: var(--samnan-blue-light);
+    border: 1.5px solid #bfdbfe;
+    border-radius: 14px;
+    padding: 18px 22px;
+    margin-bottom: 20px;
+  }
+  .highlight-box.warning {
+    background: #fefce8; border-color: #fde68a;
+  }
+  .highlight-box.success {
+    background: #f0fdf4; border-color: #bbf7d0;
+  }
+
+  /* ─── TWO COLUMN LAYOUT ─── */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px; }
+
+  /* ─── SCROLLABLE SLIDE ─── */
+  .slide { overflow-y: auto; }
+
+  /* ─── COLORED BORDERS ─── */
+  .border-blue { border-color: var(--samnan-blue); }
+  .border-green { border-color: var(--green); }
+  .border-orange { border-color: var(--orange); }
+  .border-purple { border-color: var(--purple); }
+  .border-teal { border-color: var(--thakaa-teal); }
+
+  .bg-blue   { background: #dbeafe; color: var(--samnan-blue); }
+  .bg-green  { background: #dcfce7; color: var(--green); }
+  .bg-orange { background: #ffedd5; color: var(--orange); }
+  .bg-purple { background: #ede9fe; color: var(--purple); }
+  .bg-teal   { background: #ccfbf1; color: var(--thakaa-teal); }
+
+  /* ─── SECTION HEADER ─── */
+  .section-header {
+    display: flex; align-items: center; gap: 12px;
+    margin-bottom: 20px;
+  }
+  .section-header-icon {
+    width: 42px; height: 42px;
+    border-radius: 11px; display: flex; align-items: center; justify-content: center;
+    font-size: 20px; flex-shrink: 0;
+  }
+  .section-header-title { font-size: 22px; font-weight: 800; color: var(--text-dark); }
+  .section-header-sub { font-size: 13.5px; color: var(--text-mid); margin-top: 2px; }
+
+  /* Animations */
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform:none; } }
+  .slide.active .card,
+  .slide.active .step,
+  .slide.active .rule-item { animation: fadeUp .4s ease both; }
+  .slide.active .card:nth-child(1) { animation-delay: .05s; }
+  .slide.active .card:nth-child(2) { animation-delay: .10s; }
+  .slide.active .card:nth-child(3) { animation-delay: .15s; }
+  .slide.active .card:nth-child(4) { animation-delay: .20s; }
+  .slide.active .card:nth-child(5) { animation-delay: .25s; }
+  .slide.active .step:nth-child(2) { animation-delay: .07s; }
+  .slide.active .step:nth-child(3) { animation-delay: .14s; }
+  .slide.active .step:nth-child(4) { animation-delay: .21s; }
+  .slide.active .step:nth-child(5) { animation-delay: .28s; }
+  .slide.active .step:nth-child(6) { animation-delay: .35s; }
+  .slide.active .step:nth-child(7) { animation-delay: .42s; }
+  .slide.active .step:nth-child(8) { animation-delay: .49s; }
+
+  /* Scrollbar */
+  .slide::-webkit-scrollbar { width: 5px; }
+  .slide::-webkit-scrollbar-thumb { background: #d1d5db; border-radius: 4px; }
+
+  /* ─── KEYBOARD HINT ─── */
+  .kbd-hint { font-size: 11px; color: var(--text-light); }
+
+  /* Responsive tweak */
+  @media (max-width: 900px) {
+    .slide { padding: 24px 20px; }
+    .cards-grid.cols-3, .cards-grid.cols-5, .three-col { grid-template-columns: 1fr 1fr; }
+    .two-col { grid-template-columns: 1fr; }
+    .dash-stats { grid-template-columns: 1fr 1fr; }
+    .hero-main-title { font-size: 32px; }
+    .rules-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="app">
+
+  <!-- ─── TOP NAV ─── -->
+  <nav class="topnav">
+    <div class="topnav-logos">
+      <!-- Samnan logo -->
+      <img src="logo-white.jpg" alt="SAMNAN" class="logo-samnan-img">
+      <div class="logo-divider"></div>
+      <!-- Thakaa Flow -->
+      <div style="display:flex;align-items:center;gap:10px;">
+  <img src="logo.png" alt="THAKAA FLOW" class="logo-thakaa-img">
+
+  <div class="logo-thakaa-text">
+    THAKAA FLOW
+    <span>ذكاء فلـو</span>
+  </div>
+</div>
+    </div>
+
+    <div class="topnav-title">🏗️ دليل استخدام منصة سمنان</div>
+
+    <div class="topnav-counter" id="slideCounter">١ / ٩</div>
+  </nav>
+
+  <!-- ─── SLIDES ─── -->
+  <main class="slides-container">
+
+    <!-- SLIDE 1: HERO -->
+    <section class="slide hero-slide active" data-index="0">
+      <div class="hero-logos">
+        <div class="hero-logo-box">
+          <img src="logo-white.jpg" alt="SAMNAN" class="hero-logo-img">
+            <polygon points="35,4 64,20 64,50 35,66 6,50 6,20" fill="rgba(255,255,255,.15)" stroke="rgba(255,255,255,.4)" stroke-width="2"/>
+            <text x="35" y="46" text-anchor="middle" font-family="Cairo,sans-serif" font-size="28" font-weight="900" fill="#fff">S</text>
+          <div style="color:#fff;font-weight:800;font-size:15px;">SAMNAN</div>
+          <div style="color:rgba(255,255,255,.6);font-size:11px;">مجموعة سمنان القابضة</div>
+        </div>
+
+        <div class="hero-logo-separator">×</div>
+
+        <div class="hero-logo-box">
+         <img src="logo.png" alt="THAKAA FLOW" class="hero-logo-img">
+          <div style="color:#fff;font-weight:800;font-size:15px;">THAKAA FLOW</div>
+          <div style="color:rgba(255,255,255,.6);font-size:11px;">ذكاء فلـو</div>
+        </div>
+      </div>
+
+      <h1 class="hero-main-title">منصة سمنان الداخلية</h1>
+      <p class="hero-tagline">
+        نظام موحد لإدارة المشاريع · تتبع المدفوعات · التوريد · والتركيبات<br/>
+        من توقيع العقد حتى إغلاق المشروع — كل شيء في مكان واحد
+      </p>
+
+      <div class="hero-badges">
+        <div class="hero-badge">🏗️ إدارة المشاريع</div>
+        <div class="hero-badge">💰 تتبع المدفوعات</div>
+        <div class="hero-badge">📦 التوريد</div>
+        <div class="hero-badge">🔧 التركيبات</div>
+        <div class="hero-badge">👥 ٥ أدوار وظيفية</div>
+      </div>
+
+      <div style="margin-top:36px;color:rgba(255,255,255,.5);font-size:13px;">
+        ← اضغط على زر "التالي" أو مفتاح السهم للانتقال
+      </div>
+    </section>
+
+    <!-- SLIDE 2: OVERVIEW -->
+    <section class="slide" data-index="1">
+      <div class="slide-label">نظرة عامة</div>
+      <h2 class="slide-title">ما المشكلة التي تحلّها المنصة؟</h2>
+      <p class="slide-subtitle">سمنان تبيع وتركّب منتجات (مطابخ · دواليب · وحدات) — وكل مشروع يمر بمراحل معقدة</p>
+      <div class="divider"></div>
+
+      <div class="two-col" style="margin-bottom:20px;">
+        <div>
+          <div class="highlight-box warning" style="margin-bottom:14px;">
+            <div style="font-size:15px;font-weight:800;margin-bottom:8px;color:#92400e;">🚨 قبل المنصة</div>
+            <ul style="list-style:none;">
+              <li style="font-size:13.5px;color:#78350f;padding:4px 0;">❌ إكسل وواتساب وشيتات متفرقة</li>
+              <li style="font-size:13.5px;color:#78350f;padding:4px 0;">❌ دفعات تُنسى وبيانات تضيع</li>
+              <li style="font-size:13.5px;color:#78350f;padding:4px 0;">❌ لا أحد يعرف الصورة الكاملة</li>
+              <li style="font-size:13.5px;color:#78350f;padding:4px 0;">❌ تأخير بين الفرق بسبب نقص التنسيق</li>
+            </ul>
+          </div>
+          <div class="highlight-box success">
+            <div style="font-size:15px;font-weight:800;margin-bottom:8px;color:#166534;">✅ بعد المنصة</div>
+            <ul style="list-style:none;">
+              <li style="font-size:13.5px;color:#14532d;padding:4px 0;">✓ نظام موحد لكل الفرق</li>
+              <li style="font-size:13.5px;color:#14532d;padding:4px 0;">✓ كل دفعة مُسجّلة بإيصالها</li>
+              <li style="font-size:13.5px;color:#14532d;padding:4px 0;">✓ كل شخص يرى ما يخصه فقط</li>
+              <li style="font-size:13.5px;color:#14532d;padding:4px 0;">✓ تاريخ كامل لكل إجراء</li>
+            </ul>
+          </div>
+        </div>
+
+        <div>
+          <div class="cards-grid" style="grid-template-columns:1fr;">
+            <div class="card" style="border-right:4px solid var(--samnan-blue);">
+              <div style="font-size:24px;margin-bottom:8px;">🎯</div>
+              <div class="card-title">الأولوية الأولى</div>
+              <div class="card-body">منتج يعمل بالكامل ويبدو احترافياً. الكوردنيتر يتتبع كل شيء. كل فريق يعرف مهمته بالضبط.</div>
+            </div>
+            <div class="card" style="border-right:4px solid var(--thakaa-teal);">
+              <div style="font-size:24px;margin-bottom:8px;">📱</div>
+              <div class="card-title">عربي RTL بالكامل</div>
+              <div class="card-body">الواجهة عربية 100% · تدعم الجوال · خط Cairo · ألوان واضحة للحالات المختلفة.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: ROLES -->
+    <section class="slide" data-index="2">
+      <div class="slide-label">الأدوار الوظيفية</div>
+      <h2 class="slide-title">٥ أدوار — كل واحد يرى ما يخصه</h2>
+      <p class="slide-subtitle">عند تسجيل الدخول يُحوَّل المستخدم تلقائياً إلى لوحة التحكم المناسبة لدوره</p>
+      <div class="divider"></div>
+
+      <div class="cards-grid cols-5">
+        <div class="card role-card border-blue">
+          <div class="badge bg-blue">الكوردنيتر</div>
+          <div class="card-title">مدير المشروع</div>
+          <ul class="perms-list">
+            <li><span class="perm-icon">✅</span>إنشاء المشاريع</li>
+            <li><span class="perm-icon">✅</span>تسجيل الدفعات</li>
+            <li><span class="perm-icon">✅</span>طلب المواد</li>
+            <li><span class="perm-icon">✅</span>جدولة التركيب</li>
+            <li><span class="perm-icon">✅</span>إغلاق المشروع</li>
+          </ul>
+        </div>
+        <div class="card role-card border-green">
+          <div class="badge bg-green">مهندس المبيعات</div>
+          <div class="card-title">صاحب الصفقة</div>
+          <ul class="perms-list">
+            <li><span class="perm-icon">✅</span>إنشاء مشاريعه</li>
+            <li><span class="perm-icon">✅</span>رؤية مشاريعه فقط</li>
+            <li><span class="perm-icon">❌</span>لا تسجيل دفعات</li>
+            <li><span class="perm-icon">❌</span>لا طلب مواد</li>
+            <li><span class="perm-icon">❌</span>لا جدولة تركيب</li>
+          </ul>
+        </div>
+        <div class="card role-card border-orange">
+          <div class="badge bg-orange">التوريد</div>
+          <div class="card-title">فريق المستودع</div>
+          <ul class="perms-list">
+            <li><span class="perm-icon">✅</span>رؤية طلبات المواد</li>
+            <li><span class="perm-icon">✅</span>تحديث حالة التحضير</li>
+            <li><span class="perm-icon">✅</span>تأكيد التسليم</li>
+            <li><span class="perm-icon">❌</span>لا إنشاء مشاريع</li>
+            <li><span class="perm-icon">❌</span>لا معلومات مالية</li>
+          </ul>
+        </div>
+        <div class="card role-card border-purple">
+          <div class="badge bg-purple">التركيبات</div>
+          <div class="card-title">فريق الميدان</div>
+          <ul class="perms-list">
+            <li><span class="perm-icon">✅</span>رؤية جدول التركيب</li>
+            <li><span class="perm-icon">✅</span>تأكيد الحضور</li>
+            <li><span class="perm-icon">✅</span>رفع صور الإنجاز</li>
+            <li><span class="perm-icon">❌</span>لا إنشاء مشاريع</li>
+            <li><span class="perm-icon">❌</span>لا معلومات مالية</li>
+          </ul>
+        </div>
+        <div class="card role-card border-teal">
+          <div class="badge bg-teal">الإدارة</div>
+          <div class="card-title">صلاحيات كاملة</div>
+          <ul class="perms-list">
+            <li><span class="perm-icon">✅</span>كل المشاريع</li>
+            <li><span class="perm-icon">✅</span>كل الإجراءات</li>
+            <li><span class="perm-icon">✅</span>إدارة المستخدمين</li>
+            <li><span class="perm-icon">✅</span>تقارير الإيرادات</li>
+            <li><span class="perm-icon">✅</span>تغيير الأدوار</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top:18px;">
+        <div style="font-size:14px;font-weight:700;color:var(--samnan-blue);margin-bottom:6px;">🔐 الأمان التلقائي</div>
+        <div style="font-size:13.5px;color:var(--text-mid);">كل صفحة محمية بصلاحيات الدور — الدخول لصفحة غير مسموح بها يُعيد المستخدم تلقائياً للوحة التحكم الخاصة به. الأزرار المحظورة مخفية كلياً (لا فقط معطّلة).</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: LIFECYCLE -->
+    <section class="slide" data-index="3">
+      <div class="slide-label">دورة حياة المشروع</div>
+      <h2 class="slide-title">٨ مراحل — من العقد للإغلاق</h2>
+      <p class="slide-subtitle">كل مرحلة تفتح بعد اكتمال الشرط الذي قبلها — لا يمكن القفز</p>
+      <div class="divider"></div>
+
+      <div class="lifecycle-steps">
+        <div class="step">
+          <div class="step-num">١</div>
+          <div class="step-content">
+            <div class="step-title">توقيع العقد وإنشاء المشروع</div>
+            <div class="step-desc">مهندس المبيعات يُسجّل المشروع: اسم العميل، قيمة العقد، التواريخ، رفع العقد PDF، وتحديد جدول الدفعات.</div>
+          </div>
+          <div>
+            <span class="step-who badge-blue">مهندس المبيعات / كوردنيتر</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٢</div>
+          <div class="step-content">
+            <div class="step-title">تحصيل الدفعة الأولى</div>
+            <div class="step-desc">الكوردنيتر يُسجّل الدفعة المستلمة من العميل ويرفع إيصال التحويل. عادةً ٣٠–٤٠% من قيمة العقد.</div>
+          </div>
+          <div>
+            <span class="step-who badge-blue">الكوردنيتر</span>
+            <div class="step-block">🔒 شرط لطلب المواد</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٣</div>
+          <div class="step-content">
+            <div class="step-title">طلب المواد</div>
+            <div class="step-desc">الكوردنيتر يُرسل قائمة المواد للتوريد: الاسم، الكمية، الوحدة. فريق التوريد يستلمها فور الإرسال.</div>
+          </div>
+          <div>
+            <span class="step-who badge-orange">التوريد يستلم الطلب</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٤</div>
+          <div class="step-content">
+            <div class="step-title">تحصيل دفعة التوريد</div>
+            <div class="step-desc">قبل التوصيل، العميل يدفع دفعة التوريد. لا يوجد تسليم بدون دفع — قاعدة صارمة.</div>
+          </div>
+          <div>
+            <span class="step-who badge-blue">الكوردنيتر</span>
+            <div class="step-block">🔒 شرط لجدولة التوصيل</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٥</div>
+          <div class="step-content">
+            <div class="step-title">التوريد والتسليم</div>
+            <div class="step-desc">فريق التوريد يجدول التوصيل، يُنفّذه، ويرفع إيصال الاستلام الموقّع من العميل.</div>
+          </div>
+          <div>
+            <span class="step-who badge-orange">فريق التوريد</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٦</div>
+          <div class="step-content">
+            <div class="step-title">تحصيل دفعة التركيب</div>
+            <div class="step-desc">قبل بدء أعمال التركيب، العميل يدفع الدفعة المخصصة للتركيب.</div>
+          </div>
+          <div>
+            <span class="step-who badge-blue">الكوردنيتر</span>
+            <div class="step-block">🔒 شرط لجدولة التركيب</div>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٧</div>
+          <div class="step-content">
+            <div class="step-title">التركيب في موقع العميل</div>
+            <div class="step-desc">الكوردنيتر يجدول الزيارة · فريق التركيب يؤكد الحضور · ينفّذ العمل · يرفع صور الإنجاز.</div>
+          </div>
+          <div>
+            <span class="step-who badge-purple">فريق التركيبات</span>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">٨</div>
+          <div class="step-content">
+            <div class="step-title">الدفعة الأخيرة وإغلاق المشروع</div>
+            <div class="step-desc">آخر دفعة تُحصَّل، الكوردنيتر يتحقق من اكتمال كل شيء ويُغلق المشروع رسمياً.</div>
+          </div>
+          <div>
+            <span class="step-who badge-green">مكتمل ✓</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: COORDINATOR DASHBOARD MOCKUP -->
+    <section class="slide" data-index="4">
+      <div class="slide-label">لوحة تحكم الكوردنيتر</div>
+      <h2 class="slide-title">القلب التشغيلي للمنصة</h2>
+      <p class="slide-subtitle">الكوردنيتر يرى الصورة الكاملة — المشاريع، الدفعات، التنبيهات</p>
+      <div class="divider"></div>
+
+      <div class="dashboard-mock">
+        <div class="dash-topbar">
+          <div class="dash-topbar-title">🏗️ لوحة تحكم الكوردنيتر</div>
+          <div style="display:flex;gap:8px;">
+            <span class="status-badge badge-green">نشط</span>
+            <span style="color:rgba(255,255,255,.7);font-size:12px;">محمد الكوردنيتر</span>
+          </div>
+        </div>
+        <div class="dash-stats">
+          <div class="dash-stat">
+            <div class="dash-stat-num" style="color:var(--samnan-blue);">١٢</div>
+            <div class="dash-stat-lbl">مشروع نشط</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-num" style="color:var(--red);">٣</div>
+            <div class="dash-stat-lbl">دفعة متأخرة</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-num" style="color:var(--green);">٨٥,٠٠٠</div>
+            <div class="dash-stat-lbl">ريال تحصّل هذا الشهر</div>
+          </div>
+          <div class="dash-stat">
+            <div class="dash-stat-num" style="color:var(--orange);">٢</div>
+            <div class="dash-stat-lbl">تركيب هذا الأسبوع</div>
+          </div>
+        </div>
+        <div class="dash-list">
+          <div style="font-size:13px;font-weight:700;color:var(--text-mid);margin-bottom:8px;">⚠️ يحتاج انتباهك الآن</div>
+          <div class="dash-row">
+            <div>
+              <div class="dash-name">مشروع فيلا الرياض — الملك</div>
+              <div class="dash-client">دفعة التوريد · ١٥,٠٠٠ ريال</div>
+            </div>
+            <span class="status-badge badge-red">متأخرة ٣ أيام</span>
+          </div>
+          <div class="dash-row">
+            <div>
+              <div class="dash-name">مطبخ شقة النورة</div>
+              <div class="dash-client">ينتظر تأكيد فريق التركيب</div>
+            </div>
+            <span class="status-badge badge-yellow">معلقة</span>
+          </div>
+          <div class="dash-row">
+            <div>
+              <div class="dash-name">دولاب غرفة المنيع</div>
+              <div class="dash-client">الدفعة الأولى · ٨,٠٠٠ ريال</div>
+            </div>
+            <span class="status-badge badge-orange">مدفوعة جزئياً</span>
+          </div>
+          <div class="dash-row">
+            <div>
+              <div class="dash-name">مطبخ فيلا الأحمد</div>
+              <div class="dash-client">تم الإغلاق · كامل</div>
+            </div>
+            <span class="status-badge badge-green">مكتمل</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="cards-grid cols-3" style="margin-top:18px;">
+        <div class="card" style="padding:14px 16px;">
+          <div style="font-size:20px;margin-bottom:6px;">💰</div>
+          <div class="card-title" style="font-size:14px;">تسجيل الدفعات</div>
+          <div class="card-body" style="font-size:12.5px;">انقر "تسجيل دفعة" → أدخل المبلغ → ارفع الإيصال → تأكيد</div>
+        </div>
+        <div class="card" style="padding:14px 16px;">
+          <div style="font-size:20px;margin-bottom:6px;">📦</div>
+          <div class="card-title" style="font-size:14px;">طلب المواد</div>
+          <div class="card-body" style="font-size:12.5px;">من صفحة المشروع → تبويب المواد → أضف أصناف → أرسل لفريق التوريد</div>
+        </div>
+        <div class="card" style="padding:14px 16px;">
+          <div style="font-size:20px;margin-bottom:6px;">🔧</div>
+          <div class="card-title" style="font-size:14px;">جدولة التركيب</div>
+          <div class="card-body" style="font-size:12.5px;">من تبويب التركيب → حدد التاريخ → أبلغ الفريق → تتبع التنفيذ</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: PAYMENT TRACKING -->
+    <section class="slide" data-index="5">
+      <div class="slide-label">تتبع المدفوعات</div>
+      <h2 class="slide-title">نظام الدفعات — شفاف وكامل</h2>
+      <p class="slide-subtitle">كل مشروع له جدول دفعات مخصص · حالة كل دفعة واضحة بالألوان</p>
+      <div class="divider"></div>
+
+      <div style="margin-bottom:22px;">
+        <div style="font-size:14px;font-weight:700;color:var(--text-mid);margin-bottom:12px;">مثال: مشروع مطبخ بقيمة ٤٠,٠٠٠ ريال</div>
+        <div class="payment-flow">
+          <div class="pf-step paid">
+            <div class="pf-icon">✅</div>
+            <div class="pf-name">الدفعة الأولى</div>
+            <div class="pf-amount">١٢,٠٠٠ ريال</div>
+            <div class="pf-status"><span class="status-badge badge-green">مدفوعة</span></div>
+          </div>
+          <div class="pf-arrow">←</div>
+          <div class="pf-step active-step">
+            <div class="pf-icon">⏳</div>
+            <div class="pf-name">دفعة التوريد</div>
+            <div class="pf-amount">١٦,٠٠٠ ريال</div>
+            <div class="pf-status"><span class="status-badge badge-orange">جزئية</span></div>
+          </div>
+          <div class="pf-arrow">←</div>
+          <div class="pf-step locked">
+            <div class="pf-icon">🔒</div>
+            <div class="pf-name">دفعة التركيب</div>
+            <div class="pf-amount">٨,٠٠٠ ريال</div>
+            <div class="pf-status"><span class="status-badge badge-gray">معلقة</span></div>
+          </div>
+          <div class="pf-arrow">←</div>
+          <div class="pf-step locked">
+            <div class="pf-icon">🔒</div>
+            <div class="pf-name">الدفعة الأخيرة</div>
+            <div class="pf-amount">٤,٠٠٠ ريال</div>
+            <div class="pf-status"><span class="status-badge badge-gray">معلقة</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <div style="font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:12px;">🎨 ألوان حالات الدفعات</div>
+          <div class="card" style="padding:14px 18px;">
+            <div style="display:flex;flex-direction:column;gap:8px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">معلقة — لم تُدفع بعد</span>
+                <span class="status-badge badge-yellow">معلقة</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">دُفع جزء منها</span>
+                <span class="status-badge badge-orange">مدفوعة جزئياً</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">مدفوعة بالكامل</span>
+                <span class="status-badge badge-green">مدفوعة</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">تجاوزت تاريخ الاستحقاق</span>
+                <span class="status-badge badge-red">متأخرة</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">تم إلغاؤها</span>
+                <span class="status-badge badge-gray">ملغاة</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <div style="font-size:14px;font-weight:700;color:var(--text-dark);margin-bottom:12px;">📋 خطوات تسجيل دفعة</div>
+          <div class="lifecycle-steps" style="gap:8px;">
+            <div class="step" style="padding:10px 14px;">
+              <div class="step-num" style="width:28px;height:28px;font-size:12px;">١</div>
+              <div class="step-content">
+                <div class="step-title" style="font-size:13px;">افتح المشروع → تبويب الدفعات</div>
+              </div>
+            </div>
+            <div class="step" style="padding:10px 14px;">
+              <div class="step-num" style="width:28px;height:28px;font-size:12px;">٢</div>
+              <div class="step-content">
+                <div class="step-title" style="font-size:13px;">انقر "تسجيل دفعة" على الدفعة المطلوبة</div>
+              </div>
+            </div>
+            <div class="step" style="padding:10px 14px;">
+              <div class="step-num" style="width:28px;height:28px;font-size:12px;">٣</div>
+              <div class="step-content">
+                <div class="step-title" style="font-size:13px;">أدخل المبلغ المستلم</div>
+              </div>
+            </div>
+            <div class="step" style="padding:10px 14px;">
+              <div class="step-num" style="width:28px;height:28px;font-size:12px;">٤</div>
+              <div class="step-content">
+                <div class="step-title" style="font-size:13px;">ارفع إيصال التحويل (PDF أو صورة)</div>
+              </div>
+            </div>
+            <div class="step" style="padding:10px 14px;">
+              <div class="step-num" style="width:28px;height:28px;font-size:12px;">٥</div>
+              <div class="step-content">
+                <div class="step-title" style="font-size:13px;">انقر "تأكيد الاستلام" ✓</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: SUPPLY & INSTALLATION -->
+    <section class="slide" data-index="6">
+      <div class="slide-label">التوريد والتركيبات</div>
+      <h2 class="slide-title">فريقان — لوحتان منفصلتان</h2>
+      <p class="slide-subtitle">كل فريق يرى ما يخصه فقط · لا معلومات مالية للتوريد أو التركيبات</p>
+      <div class="divider"></div>
+
+      <div class="two-col">
+        <!-- Supply -->
+        <div>
+          <div class="section-header">
+            <div class="section-header-icon" style="background:#ffedd5;">📦</div>
+            <div>
+              <div class="section-header-title">فريق التوريد</div>
+              <div class="section-header-sub">/supply — لوحة المستودع</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px;border-right:3px solid var(--orange);">
+            <div class="card-title" style="font-size:14px;margin-bottom:8px;">📋 ما يراه فريق التوريد</div>
+            <ul class="perms-list">
+              <li>✅ طلبات المواد الواردة من الكوردنيتر</li>
+              <li>✅ قائمة الأصناف بالكميات والوحدات</li>
+              <li>✅ مواعيد التوصيل المجدولة</li>
+              <li>❌ لا يرى الدفعات أو المبالغ</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-right:3px solid var(--orange);">
+            <div class="card-title" style="font-size:14px;margin-bottom:8px;">🔄 حالات الطلب</div>
+            <div style="display:flex;flex-direction:column;gap:6px;">
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">لم يُراجَع بعد</span>
+                <span class="status-badge badge-yellow">معلق</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">يجري التحضير والتعبئة</span>
+                <span class="status-badge badge-blue">تحضير</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">جاهز للشحن</span>
+                <span class="status-badge badge-green">جاهز</span>
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;">
+                <span style="font-size:13px;">وصل للعميل</span>
+                <span class="status-badge badge-green">تم التسليم</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Installation -->
+        <div>
+          <div class="section-header">
+            <div class="section-header-icon" style="background:#ede9fe;">🔧</div>
+            <div>
+              <div class="section-header-title">فريق التركيبات</div>
+              <div class="section-header-sub">/installation — لوحة الميدان</div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-bottom:12px;border-right:3px solid var(--purple);">
+            <div class="card-title" style="font-size:14px;margin-bottom:8px;">📋 ما يراه فريق التركيبات</div>
+            <ul class="perms-list">
+              <li>✅ جدول التركيب للأسبوع والشهر</li>
+              <li>✅ موقع العميل وتفاصيل المشروع</li>
+              <li>✅ ما يحتاج تركيبه (نوع المنتج)</li>
+              <li>❌ لا يرى الدفعات أو المبالغ</li>
+            </ul>
+          </div>
+
+          <div class="card" style="border-right:3px solid var(--purple);">
+            <div class="card-title" style="font-size:14px;margin-bottom:8px;">✅ ما يُنجزه الفريق في النظام</div>
+            <ul class="perms-list">
+              <li>✅ تأكيد الحضور قبل الموعد</li>
+              <li>✅ تحديث حالة التركيب (جاري/مكتمل/تأخير)</li>
+              <li>✅ رفع صور الإنجاز بعد الانتهاء</li>
+              <li>✅ تسجيل سبب التأخير إن وجد</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-top:18px;">
+        <div style="font-size:13.5px;color:var(--text-mid);">
+          <strong style="color:var(--samnan-blue);">💡 قاعدة مهمة:</strong> لا يمكن جدولة التوصيل قبل دفع دفعة التوريد، ولا يمكن جدولة التركيب قبل دفع دفعة التركيب. النظام يمنع ذلك تلقائياً بخطأ واضح بالعربي.
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: BUSINESS RULES -->
+    <section class="slide" data-index="7">
+      <div class="slide-label">القواعد والحماية</div>
+      <h2 class="slide-title">قواعد الأعمال المُطبَّقة تلقائياً</h2>
+      <p class="slide-subtitle">النظام يحمي البيانات ويمنع الأخطاء — لا تحتاج تذكّرها، النظام يتذكرها</p>
+      <div class="divider"></div>
+
+      <div class="rules-grid">
+        <div class="rule-item">
+          <div class="rule-num">١</div>
+          <div class="rule-text">لا يمكن طلب مواد قبل تحصيل الدفعة الأولى كاملاً</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٢</div>
+          <div class="rule-text">لا يمكن جدولة التوصيل قبل دفع دفعة التوريد</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٣</div>
+          <div class="rule-text">لا يمكن جدولة التركيب قبل دفع دفعة التركيب</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٤</div>
+          <div class="rule-text">لا يمكن إغلاق المشروع وفيه دفعة معلقة أو جزئية</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٥</div>
+          <div class="rule-text">لا يمكن إغلاق المشروع قبل اكتمال التركيب</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٦</div>
+          <div class="rule-text">إلغاء المشروع يتطلب كتابة سبب التعليق (١٠ أحرف على الأقل)</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٧</div>
+          <div class="rule-text">لا حذف نهائي أبداً — كل شيء يبقى في قاعدة البيانات</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٨</div>
+          <div class="rule-text">كل إجراء يُسجَّل في سجل النشاط: من فعله، متى، وما تغيّر</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">٩</div>
+          <div class="rule-text">الدفعة الجزئية تبقى مفتوحة حتى يكتمل المبلغ كاملاً</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">١٠</div>
+          <div class="rule-text">الملفات المرفوعة: PDF وJPG وPNG فقط · الحد الأقصى ١٠ ميجابايت</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">١١</div>
+          <div class="rule-text">الدفعة المتأخرة تُكتشف تلقائياً: أي دفعة فات موعدها وحالتها معلقة</div>
+        </div>
+        <div class="rule-item">
+          <div class="rule-num">١٢</div>
+          <div class="rule-text">دفعة واحدة بـ ١٠٠٪ من قيمة المشروع تفتح كل المراحل دفعة واحدة</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: SUMMARY -->
+    <section class="slide" data-index="8">
+      <div class="slide-label">ملخص</div>
+      <h2 class="slide-title">منصة سمنان — جاهزة للعمل</h2>
+      <p class="slide-subtitle">كل ما تحتاجه لإدارة مشاريعك في مكان واحد</p>
+      <div class="divider"></div>
+
+      <div class="three-col" style="margin-bottom:20px;">
+        <div class="card" style="background:linear-gradient(135deg,#1a4fa0,#1e6bb5);border:none;color:#fff;">
+          <div style="font-size:32px;margin-bottom:10px;">🏗️</div>
+          <div class="card-title" style="color:#fff;font-size:18px;">إدارة المشاريع</div>
+          <div class="card-body" style="color:rgba(255,255,255,.85);">إنشاء · متابعة · إغلاق بضغطة زر</div>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,#16a34a,#15803d);border:none;color:#fff;">
+          <div style="font-size:32px;margin-bottom:10px;">💰</div>
+          <div class="card-title" style="color:#fff;font-size:18px;">تتبع الدفعات</div>
+          <div class="card-body" style="color:rgba(255,255,255,.85);">كل ريال موثّق بإيصاله وتاريخه</div>
+        </div>
+        <div class="card" style="background:linear-gradient(135deg,#ea580c,#c2410c);border:none;color:#fff;">
+          <div style="font-size:32px;margin-bottom:10px;">📦</div>
+          <div class="card-title" style="color:#fff;font-size:18px;">التوريد والتركيب</div>
+          <div class="card-body" style="color:rgba(255,255,255,.85);">كل فريق يعرف دوره بالضبط</div>
+        </div>
+      </div>
+
+      <div class="highlight-box" style="margin-bottom:18px;">
+        <div style="font-size:14px;font-weight:700;color:var(--samnan-blue);margin-bottom:10px;">🚀 خطوات البداية السريعة</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+          <div style="font-size:13.5px;color:var(--text-mid);">١. سجّل دخولك بالبريد الإلكتروني وكلمة المرور</div>
+          <div style="font-size:13.5px;color:var(--text-mid);">٢. ستُحوَّل تلقائياً للوحة التحكم الخاصة بدورك</div>
+          <div style="font-size:13.5px;color:var(--text-mid);">٣. أنشئ مشروعاً جديداً أو افتح مشروعاً قائماً</div>
+          <div style="font-size:13.5px;color:var(--text-mid);">٤. تتبّع الدفعات والمواد والتركيب من صفحة المشروع</div>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div class="card" style="text-align:center;padding:20px;">
+          <div style="font-size:28px;margin-bottom:8px;">🏢</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">مجموعة سمنان القابضة</div>
+          <div style="font-size:12.5px;color:var(--text-mid);">العميل · شركة مقاولات سعودية رائدة</div>
+        </div>
+        <div class="card" style="text-align:center;padding:20px;">
+          <div style="font-size:28px;margin-bottom:8px;">
+            <svg width="28" height="28" viewBox="0 0 32 32" style="display:inline-block;">
+              <circle cx="16" cy="16" r="15" fill="#e0f2fe" stroke="#0d9488" stroke-width="1.5"/>
+              <path d="M9 7 C9 7, 13 9, 15 13 C17 17, 21 19, 21 19" stroke="#0d9488" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M7 13 C7 13, 11 15, 13 19 C15 23, 19 25, 19 25" stroke="#1a4fa0" stroke-width="2" fill="none" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;">ذكاء فلو — Thakaa Flow</div>
+          <div style="font-size:12.5px;color:var(--text-mid);">ai@tfco.sa · المطوّر الرسمي للمنصة</div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ─── BOTTOM NAV ─── -->
+  <footer class="bottomnav">
+    <button class="nav-btn" id="prevBtn" onclick="navigate(-1)" disabled>
+      ← السابق
+    </button>
+
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+      <div class="progress-dots" id="dots"></div>
+      <div class="kbd-hint">يمكنك استخدام مفاتيح الأسهم ← →</div>
+    </div>
+
+    <button class="nav-btn" id="nextBtn" onclick="navigate(1)">
+      التالي →
+    </button>
+  </footer>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('slideCounter');
+  const ARABIC_NUMS = ['١','٢','٣','٤','٥','٦','٧','٨','٩','١٠'];
+  let current = 0;
+
+  // Build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('div');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goTo(idx) {
+    if (idx < 0 || idx >= slides.length) return;
+    const prev = current;
+    current = idx;
+
+    slides[prev].classList.remove('active');
+    slides[prev].classList.add(idx > prev ? 'exit-left' : 'exit-right');
+    setTimeout(() => slides[prev].classList.remove('exit-left','exit-right'), 420);
+
+    slides[current].classList.add('active');
+
+    // Dots
+    dotsContainer.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === current));
+
+    // Counter
+    counter.textContent = ARABIC_NUMS[current] + ' / ' + ARABIC_NUMS[slides.length - 1];
+
+    // Buttons
+    document.getElementById('prevBtn').disabled = current === 0;
+    document.getElementById('nextBtn').disabled = current === slides.length - 1;
+
+    // Scroll to top on slide change
+    slides[current].scrollTop = 0;
+  }
+
+  function navigate(dir) { goTo(current + dir); }
+
+  // Keyboard
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowDown')  navigate(1);
+    if (e.key === 'ArrowRight' || e.key === 'ArrowUp')   navigate(-1);
+  });
+
+  // Touch swipe
+  let touchStartX = 0;
+  document.addEventListener('touchstart', e => touchStartX = e.touches[0].clientX);
+  document.addEventListener('touchend', e => {
+    const dx = touchStartX - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 50) navigate(dx > 0 ? 1 : -1);
+  });
+</script>
+</body>
+</html>
